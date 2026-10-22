@@ -1,0 +1,1410 @@
+//#include <stdio.h>
+//int arr[1000];
+//int main() {
+//	int max, k;
+//	scanf("%d %d", &max, &k);
+//	long long sum = 1;
+//	arr[0] = 1;
+//	for (int i = 1; i < k; i++) {
+//		arr[i] = sum;
+//		sum = sum + arr[i - 1];
+//	}
+//	if (sum >= max) {
+//		for (int i = 0; i<k - 1 && sum>max; i++) {
+//			printf("%lld ", arr[i]);
+//		}
+//		printf("%lld", arr[k - 1]);
+//		return 0;
+//	}
+//	int front = 0;
+//	int rear = 0;
+//	while (sum <= max) {
+//		arr[rear] = sum;
+//		sum = sum + arr[((rear - 1) + k) % k];
+//		rear = (rear + 1) % k;
+//		front = rear;
+//	}
+//	rear = (rear + 1) % k;
+//	for (int i = 0; i < k - 1; i++)
+//	{
+//		printf("%lld ", arr[front]);
+//		front = (front + 1) % k;
+//	}
+//	printf("%lld", arr[front]);
+//}
+
+//#include<stdio.h>
+//typedef struct queue {
+//	int arr[102];
+//	int num;
+//	int front, rear;
+//}queue;
+//void createqueue(queue* q, int k) {
+//	q->front = 0;
+//	q->rear = 0;
+//	q->num = k;
+//}
+//int main() {
+//	int n, k;
+//	scanf("%d%d", &n, &k);
+//	queue q;
+//	createqueue(&q, k);
+//	for (int i = 0; i < n; i++) {
+//		scanf("%d", &q.arr[i]);
+//
+//	}
+//	q.rear = (n - k)%n;
+//	for (int i = 0; i < n - 1; i++) {
+//		printf("%d ", q.arr[(q.rear + i) % n]);
+//	}
+//	printf("%d", q.arr[(q.rear + n - 1) % n]);
+//
+//}
+//#include <stdio.h>
+//int bp[1005] = {};
+//
+//int main() {
+//	int m, k;
+//	scanf("%d %d", &m, &k);
+//	int rear = 0, sum = 0;
+//	bp[k - 1] = 1;
+//	while (1) {
+//		sum = 0;
+//		// 循环数组
+//		for (int i = 0; i < k; ++i)
+//			sum += bp[(i + rear) % k];
+//		if (bp[rear] <= m && sum > m) break;
+//		bp[rear] = sum;
+//		rear = (rear + 1) % k;
+//	}
+//	for (int i = 0; i < k; ++i)
+//		printf("%d ", bp[(rear + i) % k]);
+//	printf("\n");
+//	return 0;
+//}
+//
+
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//int main() {
+//    int n;//第一个数组的长度
+//    int m;//第二个数组的长度
+//    int arr1[20];
+//    int arr2[20];
+//    int arr3[40];//合并后的数组
+//    scanf("%d", &n);
+//    for (int i = 0; i < n; i++) {
+//        scanf("%d", &arr1[i]);
+//        //printf("%d ", arr1[i]);
+//    }
+//    //printf("\n");
+//    scanf("%d", &m);
+//    for (int i = 0; i < m; i++) {
+//        scanf("%d", &arr2[i]);
+//        //printf("%d ", arr2[i]);
+//    }
+//    int num1 = 0;//第一个数组的下标
+//    int num2 = 0;//第二个数组的下标
+//    int num3 = 0;//合并后的数组的下标
+//    for (; num3 < m + n && num1 < n && num2 < m; num3++) {
+//        if (arr1[num1] <= arr2[num2]) {
+//            arr3[num3] = arr1[num1];
+//            num1++;
+//        }
+//        else {
+//            arr3[num3] = arr2[num2];
+//            num2++;
+//        }
+//    }
+//    if (num1 == n) {//表示第一个数组已经全部进入合并数组，而第二个数组还有元素没有进入
+//        for (int i = num1; num3 < m + n; num3++) {
+//            arr3[num3] = arr2[num2];
+//            num2++;
+//        }
+//    }
+//    else {
+//        for (int i = num2; num3 < m + n; num3++) {
+//            arr3[num3] = arr1[num1];
+//            num1++;
+//        }
+//    }
+//    int i = 0;
+//    for (; i < m + n - 1; i++)
+//        printf("%d\n", arr3[i]);
+//    printf("%d", arr3[i]);
+//}
+//
+
+
+
+
+
+
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<math.h>
+//typedef struct node {
+//	int data;
+//	struct node* pre;
+//	struct node* next;
+//}Node;
+//
+//int Cal_k(int n) {
+//	double k = 1;
+//	double sum = 0;
+//	while (sum <= (double)n + 1) {
+//		sum = sum + log10((2 * k + 1) / k);
+//		k++;
+//	}
+//	return k - 1;
+//}
+//int PtrIsNull(Node* L) {
+//	if (L == NULL) {
+//		return 1;
+//	}
+//	else
+//		return 0;
+//}
+//void InitDLinkList(Node* DLinkList, int n) {
+//	Node* temp = DLinkList;
+//	for (int i = 0; i < n + 50; i++) {
+//		Node* p = (Node*)malloc(sizeof(Node));
+//		if (PtrIsNull(p)) {
+//			printf("error!\n");
+//			return;
+//		}
+//		p->data = 0;
+//		p->pre = temp;
+//		temp->next = p;
+//		temp = temp->next;
+//	}
+//	temp->next = NULL;
+//}
+//void CoutLinkList(Node* L) {
+//	Node* temp = L->next;
+//	while (temp != NULL) {
+//		printf("%d", temp->data);
+//		temp = temp->next;
+//	}
+//	printf("\n");
+//}
+//Node* CreateDLinkList(int n) {
+//	Node* DLinkList = (Node*)malloc(sizeof(Node));
+//	if (PtrIsNull(DLinkList)) {
+//		printf("error!\n");
+//	}
+//	DLinkList->next = NULL;
+//	DLinkList->pre = NULL;
+//	//生成头结点完毕
+//	InitDLinkList(DLinkList, n);
+//	//CoutLinkList(DLinkList);
+//	//长度为600的链表生成完毕
+//	return DLinkList;
+//}
+//void Mutiply(Node* num, Node* num_tail, int n) {
+//	//传进来的参数为：链表的头结点，链表的尾结点，要乘的数。乘法要从末尾开始乘，所以传入尾结点
+//	Node* temp = num_tail;//temp结点的数值要与n相乘
+//	int ret = 0;//要进位的值
+//	while (temp != num) {
+//		//循环条件是temp不为头结点
+//		int tem = temp->data;
+//		temp->data = (tem * n + ret) % 10;//相乘后temp结点的值[0,9],注意这里要加上从低位的进位！
+//		ret = (tem * n + ret) / 10;//获取要进位的值
+//		temp = temp->pre;//temp前移一个结点
+//	}
+//}
+////void chufa(Node* L, int n) {
+////	Node* temp = L->next;
+////	int ret=0;
+////	while (temp != NULL) {
+////		temp->data = (temp->data+ret)/n;
+////		ret = ret * 10;
+////		temp = temp->next;
+////	}
+////}
+//void Divide(Node* num, int b) {
+//	//形参是num的头结点，要除以的数
+//	Node* temp = num->next;//temp指向整数（即头结点的下一个结点）
+//	int ret = 0;//前一位的余数
+//	while (temp != NULL) {
+//		//循环直到到最后一个结点
+//		int a = (temp->data + ret);
+//		temp->data = a/ b;
+//		ret = (a % b) * 10;//根据手工计算除法的原理而来
+//		temp = temp->next;
+//	}
+//}
+//int main() {
+//	int n;//保留几位小数
+//	int k;//对应的k
+//	scanf("%d", &n);
+//	k = Cal_k(n);//计算k是多少
+//	//printf("k=%d\n", k);//测试用
+//	//生成头结点
+//	Node* result = CreateDLinkList(n);
+//	Node* num = CreateDLinkList(n);
+//	Node* Temp = CreateDLinkList(n);
+//	//******************************
+//	Node* Resultp = result->next;
+//	Node* Nump = num->next;
+//	//******************************
+//	Resultp->data = 2;
+//	Nump->data = 2;
+//	Node* result_tail = result;
+//	Node* num_tail = Nump;
+//
+//	while (result_tail->next != NULL) {
+//		result_tail = result_tail->next;
+//	}
+//	while (num_tail->next != NULL) {
+//		num_tail = num_tail->next;
+//	}
+//
+//	//*********************************************
+//	Node* NumTail = num_tail;//永远储存最后结点
+//	Node* ResultTail = result_tail;//永远储存最后结点
+//	//result_tail和num_tail都指向最后一个结点
+//	//*********************************************
+//
+//
+//	for (int i = 1, j = 3; i <= k; i++, j += 2) {
+//		num_tail = NumTail;
+//		result_tail = ResultTail;
+//		//num->data=num->data*i/j;
+//		//result->data+=num->data;
+//		Divide(num, j);
+//		//CoutLinkList(num);
+//		Mutiply(num, num_tail, i);
+//		//CoutLinkList(num);
+//		//chengfa(num,num_tail,2);
+//		num_tail = NumTail;
+//		result_tail = ResultTail;
+//		//leijia(result, result_tail, num, num_tail);
+//		int ret = 0;
+//		while (result_tail != result) {
+//
+//
+//			int a = result_tail->data;
+//
+//			result_tail->data = (result_tail->data + num_tail->data) % 10;
+//
+//			ret = (a + num_tail->data) / 10;
+//			result_tail->pre->data += ret;
+//			result_tail = result_tail->pre;
+//			num_tail = num_tail->pre;
+//			//CoutLinkList(result);
+//		}
+//		//CoutLinkList(result);
+//		//printf("循环次数：%d\n", i);
+//	}
+//	result_tail = ResultTail;
+//	printf("%d.", Resultp->data);
+//	Resultp = Resultp->next;
+//	for (int i = 0; i < n; i++) {
+//		printf("%d", Resultp->data);
+//		Resultp = Resultp->next;
+//	}
+//}
+////逆波兰表达式
+//#include<stdio.h>
+//#include<string.h>
+//#define MAXSIZE 100
+//typedef struct stack {
+//		char str[MAXSIZE];
+//		int top;
+//}stack;
+//void InitStack(stack* S) {
+//		S->top = -1;
+//}
+//void Push(stack* S, char c) {
+//			if (S->top != MAXSIZE - 1) {
+//				S->top++;
+//				S->str[S->top] = c;
+//			}
+//			else
+//				return;
+//}
+//int IsEmpty(stack* S) {
+//		if (S->top == -1)
+//			return 1;
+//		else
+//			return 0;
+//}
+//void Pop(stack *S, char *x) {
+//		if (S->top != -1) {
+//			*x = S->str[S->top];
+//			S->top--;
+//		}
+//}
+//bool IsOptr(char c) {
+//	if (c == '(' || c == ')' || c == '+' || c == '-' || c == '*' || c == '/') {
+//		return true;
+//	}
+//	else
+//		return false;
+//}
+//int rank(char c) {
+//	switch (c)
+//	{
+//	case'(':
+//	case')':
+//		return 2;
+//	case'+':
+//	case'-':
+//		return 0;
+//	case'*':
+//	case'/':
+//		return 1;
+//	default:
+//		break;
+//	}
+//}
+//int main() {
+//	stack optr;
+//	InitStack(&optr);
+//	char str[MAXSIZE];
+//	scanf("%s", str);
+//	int lenth = strlen(str);
+//	for (int i = 0; i < lenth;i++) {
+//		char c1 = str[i];
+//		if (IsOptr(c1)) {
+//			//如果是运算符
+//			//之后判断优先级
+//		}
+//		else
+//		{
+//			//如果是数字
+//			printf("%c", c1);
+//		}
+//	}
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+//括号匹配问题
+// #include<stdio.h>
+//#include<string.h>
+//#define MAXSIZE 100000
+//typedef struct stack {
+//	char str[MAXSIZE];
+//	int top;
+//}stack;
+//void InitStack(stack* S) {
+//	S->top = -1;
+//}
+//void Push(stack* S, char c) {
+//		if (S->top != MAXSIZE - 1) {
+//			S->top++;
+//			S->str[S->top] = c;
+//		}
+//		else
+//			return;
+//}
+//int IsEmpty(stack* S) {
+//	if (S->top == -1)
+//		return 1;
+//	else
+//		return 0;
+//}
+//void Pop(stack *S, char *x) {
+//	if (S->top != -1) {
+//		*x = S->str[S->top];
+//		S->top--;
+//	}
+//}
+//void main() {
+//	stack S;
+//	InitStack(&S);
+//	char str[MAXSIZE];
+//	scanf("%s", str);
+//	int lenth = strlen(str);
+//	for (int i = 0; i < lenth; i++) {
+//		char c = str[i];
+//		if (c == '{' || c == '[' || c == '(') {
+//			//入栈
+//			Push(&S, c);
+//		}
+//		else if (c == '}' || c == ']' || c == ')') {
+//			char x;
+//			if (!IsEmpty(&S)) {
+//				Pop(&S, &x);
+//				if (x == '{' && c != '}' || x == '[' && c != ']' || x == '(' && c != ')') {
+//					printf("no");
+//					return;
+//				}
+//			}
+//			else {
+//				printf("no");
+//				return;
+//			}
+//
+//		}
+//	}
+//	if (IsEmpty(&S)) {
+//		printf("yes");
+//	}
+//	else
+//		printf("no");
+//}
+//#include<stdio.h>
+//#define MAXSIZE 100000
+//typedef struct stack {
+//	char str[MAXSIZE];
+//	int top;
+//}stack;
+//void Push(stack *S, char c) {
+//	if (S->top != MAXSIZE - 1) {
+//		S->top++;
+//		S->str[S->top] = c;
+//	}
+//	else
+//		return;
+//}
+//void InitStack(stack *S) {
+//	S->top = -1;
+//}
+//int IsEmpty(stack* S) {
+//	if (S->top == -1)
+//		return 1;
+//	else
+//		return 0;
+//}
+//void Pop(stack *S, char *x) {
+//	if (S->top != -1) {
+//		*x = S->str[S->top];
+//		S->top--;
+//	}
+//}
+//void main() {
+//	stack S;
+//	InitStack(&S);
+//	char c;
+//	do{
+//		scanf("%c", &c);
+//		//printf("%c ", c);
+//		if (c == '[' || c == '{' || c == '(') {
+//			Push(&S, c);
+//			//printf("%c\n", c);
+//		}
+//		else if ((c == ']' || c == '}' || c == ')') && IsEmpty(&S))
+//		{
+//			printf("no");
+//			return;
+//		}
+//		else if ((c==']'||c=='}'||c==')')&&!IsEmpty(&S)) {
+//			char x;
+//			if (!IsEmpty(&S))
+//			{
+//				Pop(&S, &x);
+//				//printf("%c", x);
+//				if (x == '{' && c != '}')
+//				{
+//					printf("no");
+//					return;
+//				}
+//				else if (x == '[' && c != ']') {
+//					printf("no");
+//					return;
+//				}
+//				else if (x == '(' && c != ')') {
+//					printf("no");
+//					return;
+//				}
+//			}
+//		}
+//	} while (c != '\n');
+//	if (IsEmpty(&S)) {
+//		printf("yes");
+//	}
+//	else
+//		printf("no");
+//}
+
+
+
+
+
+/*
+for (i = 1, t = 3; i <= k; i++, t = t + 2) {//这里求解派的值运用的公式为反三角函数的幂次展开式
+	p1 = numtail;
+	ret = 0;//用ret来保存每一次的进位或者进行除法之后剩余的数
+	while (p1 != num) {
+	//首先计算R(n)*n，每个链表的结点都只保存了一个10进制的数，所以乘法和除法可以像手算一样一个数一个数相乘在相加
+		temp = p1->data * i + ret;//这里从最后一个数来进行计算，因为乘法是向前在进位
+		ret = temp / 10;
+		temp = temp % 10;//留下这个结点所要保存的数值
+		p1->data = temp;
+		p1 = p1->prior;
+	}
+	ret = 0;//重新置为0，方便后续的运算
+	p1 = num->next;
+	while (p1) {
+	//此处计算[R(n)*n]/(2n+1)中的除法
+		temp = p1->data + ret * 10;
+		//此处的ret要乘上10，因为这里我们是从前往后在进行除法，前一位不能除尽得到的余数到了后一位是要乘上10才能用的
+		ret = temp % t;
+		temp = temp / t;
+		p1->data = temp;
+		p1 = p1->next;//此处因为是从前往后算，所以结束循环的条件是指针指向空指针的时候，也就表示着计算的结束
+	}
+	ret = 0;
+	//加法要从后往前算，因为加法可能会向前进位，所以这里要从后向前算
+	p1 = numtail;
+	p2 = sumtail;
+	//加法的操作与乘法大致相同，只是运用了两个指针，一个用来指向num，一个用来指向储存结果的sum链表
+	while (p1 != num && p2 != sum) {
+	//此处其实可以只写一个，这样写只是为了防止在创建链表的时候，所创建的长度不同，导致程序的崩溃
+		temp = p1->data * 2 + p2->data + ret;
+		ret = temp / 10;
+		temp = temp % 10;
+		p2->data = temp;
+		p1 = p1->prior, p2 = p2->prior;
+	}
+}
+*/
+
+
+
+
+//数据结构实验第一题
+//#include<stdio.h>
+//#include<stdlib.h>
+//int main() {
+//	int n;//第一个数组的长度
+//	int m;//第二个数组的长度
+//	int arr1[20];
+//	int arr2[20];
+//	int arr3[40];//合并后的数组
+//	scanf("%d", &n);
+//	for (int i = 0; i < n; i++) {
+//		scanf("%d", &arr1[i]);
+//		//printf("%d ", arr1[i]);
+//	}
+//	//printf("\n");
+//	scanf("%d", &m);
+//	for (int i = 0; i < m; i++) {
+//		scanf("%d", &arr2[i]);
+//		//printf("%d ", arr2[i]);
+//	}
+//	int num1 = 0;//第一个数组的下标
+//	int num2 = 0;//第二个数组的下标
+//	int num3 = 0;//合并后的数组的下标
+//	for (; num3 < m + n&&num1<n&&num2<m; num3++) {
+//		if (arr1[num1] <= arr2[num2]) {
+//			arr3[num3] = arr1[num1];
+//			num1++;
+//		}
+//		else {
+//			arr3[num3] = arr2[num2];
+//			num2++;
+//		}
+//	}
+//	if (num1 == n) {//表示第一个数组已经全部进入合并数组，而第二个数组还有元素没有进入
+//		for (int i = num1; num3 < m + n; num3++) {
+//			arr3[num3] = arr2[num2];
+//			num2++;
+//		}
+//	}
+//	else {
+//		for (int i = num2; num3 < m + n; num3++) {
+//			arr3[num3] = arr1[num1];
+//			num1++;
+//		}
+//	}
+//	int i = 0;
+//	for (; i < m + n-1; i++)
+//		printf("%d\n", arr3[i]);
+//	printf("%d", arr3[i]);
+//}
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct node {
+//    int data;
+//    struct node* next;
+//}Node;
+//
+//void InitLinkList(int n, Node* L) {
+//    Node* p = L;
+//    Node* q = NULL;
+//    int x;
+//    for (int i = 0; i < n; i++) {
+//        q = (Node*)malloc(sizeof(Node));
+//        scanf("%d", &x);
+//        q->data = x;
+//        p->next = q;
+//        p = p->next;
+//    }
+//    p->next = NULL;
+//}
+//void CoutLinkList(Node* L, int n) {
+//    Node* p = L->next;
+//    while (p != NULL) {
+//        printf("%d ", p->data);
+//        p = p->next;
+//    }
+//}
+//void MergeLinkList(Node* A, Node* B) {
+//    Node* pa;
+//    Node* pb;
+//    Node* qa;
+//    Node* qb;
+//    pa = A;
+//    pb = B;
+//    qa = A;
+//    qb = B;
+//    pa = pa->next;
+//    pb = pb->next;
+//    A->next = NULL;
+//    Node* C = A;
+//    while (pa != NULL && pb != NULL) {
+//        if (pa->data < pb->data) {
+//            qa = pa;
+//            pa = pa->next;
+//            qa->next = A->next;
+//            A->next = qa;
+//        }
+//        else {
+//            qb = pb;
+//            pb = pb->next;
+//            qb->next = A->next;
+//            A->next = qb;
+//        }
+//    }
+//    while (pa != NULL) {
+//        qa = pa;
+//        pa = pa->next;
+//        qa->next = A->next;
+//        A->next = qa;
+//    }
+//    while (pb != NULL) {
+//        qb = pb;
+//        pb = pb->next;
+//        qb->next = A->next;
+//        A->next = qb;
+//    }
+//}
+//int main() {
+//    Node* A = (Node*)malloc(sizeof(Node));
+//    Node* B = (Node*)malloc(sizeof(Node));
+//    int numA, numB;
+//    scanf("%d%d", &numA, &numB);
+//    InitLinkList(numA, A);
+//    InitLinkList(numB, B);
+//    /*CoutLinkList(A,numA);
+//    printf("\n");
+//    CoutLinkList(B,numB);*/
+//    MergeLinkList(A, B);
+//    CoutLinkList(A, numA + numB);
+//}
+
+
+/*矩阵的转置*/
+/*
+0 3 22
+0 6 15
+1 1 11
+1 5 17
+2 3 -6
+3 5 39
+4 0 91
+5 2 28
+*/
+
+//
+//
+//
+//
+
+
+
+
+
+
+//#include<stdio.h>
+//struct ListNode {
+//    int val;
+//    struct ListNode* next;
+//    
+//};
+//struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+//    struct ListNode* pa = list1;
+//    struct ListNode* pb = list2;
+//    struct ListNode* qa, 
+//    struct ListNode*qb;
+//    struct ListNode* p;
+//    if (pa == NULL || pb == NULL)
+//        return pa;
+//    if (pa->val <= pb->val) {
+//        p = pa;
+//        pa = pa->next;
+//    }
+//    else {
+//        p = pb;
+//        pb = pb->next;
+//    }
+//    //上面是不能放进循环中的，不要强求
+//    struct ListNode* L = p;//作为合并后的头结点
+//    while (pa != NULL && pb != NULL) {
+//        if (pa->val <= pb->val) {
+//            p->next = pa;
+//            pa = pa->next;
+//            p = p->next;
+//        }
+//        else {
+//            p->next = pb;
+//            pb = pb->next;
+//            p = p->next;
+//        }
+//    }
+//    while (pa != NULL) {
+//        p->next = pa;
+//    }
+//    while (pb != NULL) {
+//        p->next = pb;
+//    }
+//    return L;
+//}
+//int main() {
+//
+//}
+
+
+
+
+
+
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct node {
+//    char data;
+//    struct node* pre;
+//    struct node* next;
+//    int freq = 0;
+//}Node;
+//typedef Node* PNode;
+//int n;
+//void InitDLinkList(PNode DLinkList) {
+//    PNode temp = DLinkList;
+//    int m;
+//    scanf("%d %d", &m, &n);
+//    for (int i = 0; i < m; i++) {
+//        PNode p = (PNode)malloc(sizeof(Node));//新建结点
+//        getchar();
+//        scanf("%c", &p->data);
+//        p->freq = 0;
+//        p->pre = temp;
+//        temp->next = p;
+//        temp = temp->next;
+//    }
+//    temp->next = NULL;
+//}
+//void CoutLinkList(PNode L) {
+//    PNode p = L->next;
+//    while (p->next != NULL) {
+//        printf("%c ", p->data);
+//        p = p->next;
+//    }
+//    printf("%c", p->data);
+//}
+//void CheckElement(char c,PNode L) {
+//    PNode p = L->next;
+//    while (p != NULL) {
+//        if (p->data == c) {
+//            p->freq++;
+//        }
+//        p = p->next;
+//    }
+//}
+//void SortLinkList(PNode L) {
+//    PNode p = L->next;
+//    PNode q = p->next;
+//    int ischanged = 0;
+//    while (1) {
+//        p = L->next;
+//        q = p->next;
+//        ischanged = 0;
+//        while (q != NULL) {
+//            if (p->freq < q->freq) {
+//                char temp = q->data;
+//                int temp2 = q->freq;
+//                q->data = p->data;
+//                q->freq = p->freq;
+//                p->data = temp;
+//                p->freq = temp2;
+//                ischanged = 1;
+//            }
+//            p = p->next;
+//            q = p->next;//交换了一遍
+//        }
+//        if (ischanged == 0) {
+//            break;
+//        }
+//    }
+//}
+//void VisitElement(PNode L) {
+//    for (int i = 0; i < n; i++) {
+//        char c;
+//        scanf("%c", &c);
+//        CheckElement(c,L);
+//        SortLinkList(L);
+//    }
+//}
+//
+//int main() {
+//    PNode DLinkList = (PNode)malloc(sizeof(Node));
+//    InitDLinkList(DLinkList);
+//    //CoutLinkList(DLinkList);
+//    //双向链表完成
+//    getchar();
+//    VisitElement(DLinkList);
+//    CoutLinkList(DLinkList);
+//
+//}
+
+
+
+
+
+///*8 5 6
+//1 2 3 4 5 6 6 7
+//2 3 5 9 12
+//2 4 5 6 12 13*/
+//#include <stdio.h>
+//#include <stdlib.h>
+//typedef  struct node {
+//    int data;
+//    struct node* next;
+//}Node;
+//typedef Node* PNode;
+//void InitLinkList(int n, Node* L) {
+//    Node* p = L;
+//    Node* q = NULL;
+//    int x;
+//    for (int i = 0; i < n; i++) {
+//        q = (Node*)malloc(sizeof(Node));
+//        scanf("%d", &x);
+//        q->data = x;
+//        p->next = q;
+//        p = p->next;
+//    }
+//    p->next = NULL;
+//}
+//int IsFound(int x, PNode L) {
+//    Node* p = L->next;
+//    while (p != NULL) {
+//        if (p->data == x) {
+//            return 1;
+//        }
+//        p = p->next;
+//    }
+//    return 0;
+//}
+//
+//void CoutLinkList(PNode L) {
+//    PNode p = L->next;
+//    while (p->next != NULL) {
+//        printf("%d ", p->data);
+//        p = p->next;
+//    }
+//    printf("%d", p->data);
+//}
+//void DeleteX(int x,PNode L) {
+//    //要删除x所在节点
+//    PNode p = L->next;
+//    while (p->next->data != x) {
+//        p = p->next;
+//    }
+//    PNode q = p->next;
+//    p->next = p->next->next;
+//    free(q);
+//}
+//int main() {
+//    PNode A = (PNode)malloc(sizeof(Node));
+//    PNode B = (PNode)malloc(sizeof(Node));
+//    PNode C = (PNode)malloc(sizeof(Node));
+//    int na, nb, nc;
+//    scanf("%d %d %d", &na, &nb, &nc);
+//    InitLinkList(na, A);
+//    InitLinkList(nb, B);
+//    InitLinkList(nc, C);
+//    Node* p = A->next;
+//
+//    
+//    /*CoutLinkList(A);
+//    printf("\n");
+//    CoutLinkList(B);
+//    printf("\n");
+//    CoutLinkList(C);
+//    printf("\n");*/
+//    while (p!= NULL) {
+//        int x = p->data;
+//        PNode temp = p->next;
+//        //printf("%d\n", p->data);
+//        if (IsFound(x, B) && IsFound(x, C)) {
+//            DeleteX(x,A);
+//        }
+//        p = temp;
+//    }
+//    CoutLinkList(A);
+//}
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//typedef  struct node {
+//    int data;
+//    struct node* next;
+//}Node;
+//typedef Node* PNode;
+//void InitLinkList(int n, Node* L) {
+//    Node* p = L;
+//    Node* q = NULL;
+//    int x;
+//    for (int i = 0; i < n; i++) {
+//        q = (Node*)malloc(sizeof(Node));
+//        scanf("%d", &x);
+//        q->data = x;
+//        p->next = q;
+//        p = p->next;
+//    }
+//    p->next = NULL;
+//}
+//int IsFound(int x, PNode L) {
+//    Node* p = L->next;
+//    while (p != NULL) {
+//        if (p->data == x) {
+//            return 1;
+//        }
+//        p = p->next;
+//    }
+//    return 0;
+//}
+//void Delete(int x, PNode L) {
+//    Node* p = L->next;
+//    while (p->next != NULL) {
+//        if (p->next->data == x) {
+//            Node* q = p->next;
+//            p->next = p->next->next;
+//            free(q);
+//        }
+//        p = p->next;
+//    }
+//    if (p->data == x) {
+//        p = NULL;
+//    }
+//}
+//void CoutLinkList(PNode L) {
+//    PNode p = L->next;
+//    while (p->next != NULL) {
+//        printf("%d ", p->data);
+//        p = p->next;
+//    }
+//    printf("%d", p->data);
+//}
+//int main() {
+//    PNode A = (PNode)malloc(sizeof(Node));
+//    PNode B = (PNode)malloc(sizeof(Node));
+//    PNode C = (PNode)malloc(sizeof(Node));
+//    int na, nb, nc;
+//    scanf("%d %d %d", &na, &nb, &nc);
+//    InitLinkList(na, A);
+//    InitLinkList(nb, B);
+//    InitLinkList(nc, C);
+//    Node* p = A->next;
+//    while (p != NULL) {
+//        int x = p->data;
+//        if (IsFound(x, B) && IsFound(x, C)) {
+//            Delete(x, A);
+//        }
+//        p = p->next;
+//    }
+//    CoutLinkList(A);
+//
+//}
+//
+
+
+
+
+//#include<stdio.h>
+//int arr1[100];
+//int arr2[100];
+//int arr3[100];
+//int a;
+//int IsFound(int x, int* arr, int n) {
+//    for (int i = 0; i < n; i++) {
+//        if (arr[i] == x) {
+//            return 1;
+//        }
+//    }
+//    return 0;
+//}
+//void DeleteX(int x) {
+//    int i=0;
+//    for (i = 0; i < a; i++) {
+//        if (x == arr1[i]) {
+//            break;
+//        }
+//    }
+//    for (int j = i; j < a; j++) {
+//        arr1[j] = arr1[j + 1];
+//    }
+//}
+//int main() {
+//    int b, c;
+//    scanf("%d%d%d", &a, &b, &c);
+//    for (int i = 0; i < a; i++) {
+//        scanf("%d", &arr1[i]);
+//    }
+//    for (int i = 0; i < b; i++) {
+//        scanf("%d", &arr2[i]);
+//    }
+//    for (int i = 0; i < c; i++) {
+//        scanf("%d", &arr3[i]);
+//    }
+//    int n = 0;
+//    int x;
+//    for (int i = 0; i < a; i++) {
+//        x = arr1[i];
+//        if (IsFound(x, arr2, b) && IsFound(x, arr3, c)) {
+//            DeleteX(x);
+//            a--;
+//        }
+//    }
+//    for (int i = 0; i < a - 1; i++) {
+//        printf("%d ", arr1[i]);
+//    }
+//    printf("%d", arr1[a - 1]);
+//
+//}
+
+/*
+8 5 6
+1 2 3 4 5 6 6 7
+2 3 5 9 12
+2 4 5 6 12 13
+*/
+
+
+
+
+
+
+
+
+
+
+//#include<stdio.h>
+//#include <stdlib.h>
+//int arr2[1000];
+//void ReverseArray(int elenum) {
+//    int arr[1000];
+//    for (int i = 0; i < elenum; i++) {
+//        arr[i] = arr2[i];
+//    }
+//    int temp;
+//    for (int i = 0; i < elenum / 2; i++) {
+//        temp = arr[i];
+//        arr[i] = arr[elenum - i - 1];
+//        arr[elenum - i - 1] = temp;
+//    }
+//    for (int i = 0; i < elenum-1; i++) {
+//        printf("%d ", arr[i]);
+//    }
+//    printf("%d", arr[elenum]);
+//}
+//typedef struct node {
+//    int data;
+//    struct node* next;
+//}Node;
+//void ReverseLinkList(Node* PLinkList) {
+//    Node* p;
+//    Node* rear;
+//    Node* q;
+//    Node* r;
+//    rear = PLinkList->next;//原来第一个元素结点变成最后一个
+//    //p = PLinkList;
+//    q = PLinkList;
+//    r = PLinkList;
+//    while (q->next->next != NULL) {
+//        q = q->next;//q指向当前最后节点的前一个结点
+//    }
+//    p = q->next;//p指向当前最后结点
+//    while (r->next != rear) {
+//        r = r->next;//r指向rear前一个结点
+//    }
+//    while (p != rear) {
+//        p->next = rear;
+//        r->next = p;
+//        q->next = NULL;
+//        r = r->next;
+//        Node* temp=PLinkList;
+//        while (temp->next->next != NULL) {
+//            temp = temp->next;//q指向当前最后节点的前一个结点
+//        }
+//        q = temp;
+//        p = q->next;//p指向当前最后结点
+//    }
+//    rear->next = NULL;
+//}
+//void InitAndReverseLinkList(int elenum) {
+//    Node* PLinkList = (Node*)malloc(sizeof(Node));//头结点
+//    if (PLinkList == NULL) {
+//        printf("Memory allocation failed in ReverseLinkList");
+//        return;
+//    }
+//    Node* p = PLinkList;//指向头结点
+//    Node* q;
+//    for (int i = 0; i < elenum; i++) {//声明新结点并链接
+//        q = (Node*)malloc(sizeof(Node));
+//        if (q == NULL) {
+//            printf("Memory allocation failed in ReverseLinkList");
+//        }
+//        else {
+//            q->data = arr2[i];
+//            p->next = q;
+//            p = q;
+//        }
+//    }
+//    p->next = NULL;//完成
+//    /*p=PLinkList->next;*/
+//    /*for(int i=0;i<elenum;i++) {
+//        printf("%d ",p->data);
+//        p=p->next;
+//    }*/
+//    //单链表生成完成
+//    ReverseLinkList(PLinkList);
+//    for (int i = 0; i < elenum-1; i++) {
+//        printf("%d ", p->data);
+//        p = p->next;
+//    }
+//    printf("%d", p->data);
+//}
+//
+//int main() {
+//    int elenum;
+//    scanf("%d", &elenum);
+//    for (int i = 0; i < elenum; i++) {
+//        scanf("%d", &arr2[i]);
+//    }
+//    ReverseArray(elenum);
+//    printf("\n");
+//    /*ReverseArray(elenum);*/
+//    InitAndReverseLinkList(elenum);
+//}
+/*
+*
+6
+2 3 4 5 6 15
+*/
+
+//#include<iostream>
+//using namespace std;
+//typedef int ElementType;
+//
+//struct node {
+//	ElementType data;
+//	struct node* next;
+//};
+//typedef struct node Node;
+//
+//typedef struct node* PLinkList;//指向链表的指针，即头指针，代指链表也
+//void test(Node& n,ElementType data) {
+//	n.data = data;
+//}
+//void createlist(PLinkList L, int number, ElementType n) {
+//	Node* pa;
+//	Node* pb = L;
+//	for (int i = 0; i < number; i++) {
+//		pa = (Node*)malloc(sizeof(Node));
+//		if (pa == NULL) {
+//			cout << "ERROR!";
+//			return;
+//		}
+//		else {
+//			pa->data = n;
+//			cout << "初始化时打印：" << endl;
+//			cout << pa->data<<endl;
+//			pb->next = pa;
+//			pb = pb->next;
+//			n++;
+//
+//		}
+//	}
+//	pb->next = NULL;
+//	
+//}
+//
+//void CoutLinkList(PLinkList &L) {
+//	Node* p=L->next;
+//	while (p ->next!= NULL) {
+//		cout << p->data;
+//		cout << " ";
+//		p = p->next;
+//	}
+//	cout << p->data << endl;
+//	cout << "结束！"<<endl;
+//}
+//PLinkList MergeLinkList(PLinkList A, PLinkList B) {
+//	Node* pa;
+//	Node* pb;
+//	Node* Movepa;
+//	Node* Movepb;
+//	pa = A->next;
+//	pb = B->next;//pa和pb分别定位到A和B上
+//	Movepa = pa;
+//	Movepb = pb;
+//	Node C;
+//	PLinkList pc = &C;//建立了头节点了
+//	PLinkList temp = pc;
+//	Node* Movepc=NULL;
+//	while (pa->next && pb->next) {
+//		if (pa->data < pb->data) {
+//			Movepc = (Node*)malloc(sizeof(Node));//建立游离的结点
+//			Movepc->data = pa->data;//赋值
+//			pa = pa->next;//AB指针移动
+//			//cout << Movepc->data;//输出被赋的值
+//			pc->next = Movepc;//连接游离结点
+//			pc = Movepc;
+//		}
+//		else {
+//			Movepc = (Node*)malloc(sizeof(Node));
+//			Movepc->data = pb->data;
+//			pb = pb->next;
+//			//cout << Movepc->data;
+//			pc->next = Movepc;
+//			pc = Movepc;
+//		}
+//		
+//	}
+//	while (pa != NULL) {
+//		Movepc = (Node*)malloc(sizeof(Node));//建立游离的结点
+//		Movepc->data = pa->data;//赋值
+//		pa = pa->next;//AB指针移动
+//		//cout << Movepc->data;//输出被赋的值
+//		pc->next = Movepc;//连接游离结点
+//		pc = Movepc;
+//	}
+//	while (pb != NULL) {
+//		Movepc = (Node*)malloc(sizeof(Node));
+//		Movepc->data = pb->data;
+//		pb = pb->next;
+//		//cout << Movepc->data;
+//		pc->next = Movepc;
+//		pc = Movepc;
+//	}
+//	Movepc->next = NULL;
+//	return temp;
+//}
+//int main() {
+//	Node A, B;
+//	PLinkList pa=&A;
+//	PLinkList pb = &B;
+//	pa->next = NULL;
+//	pb->next = NULL;
+//	//test(A, 5);
+//	//cout << pa->data<<endl;
+//	//cout << pa->next << endl;
+//	createlist(pa, 5, 1);
+//	CoutLinkList(pa);
+//	createlist(pb, 7, 1);
+//	CoutLinkList(pb);
+//	PLinkList pc = MergeLinkList(pa, pb);
+//	CoutLinkList(pc);
+//
+//}
+//#include<iostream>
+//#include<stdlib.h>
+//struct Node {
+//	int data;
+//	struct Node* next;
+//};
+//typedef struct Node Node;
+//typedef struct Node* PNode;
+//struct LinkList {
+//	PNode head;//相当于   struct Node* head 指向节点的指针类型
+//};
+//PNode CreatLinkList() {
+//	LinkList L;
+//	L.head = (PNode)malloc(sizeof(Node));
+//	L.head->next = NULL;
+//	return L.head;
+//}
+//void InitLinkList(LinkList L, int n, int number) {
+//	PNode temp,P=L.head;
+//	for (int i = 0; i <= n; i++) {
+//		temp= (PNode)malloc(sizeof(Node));
+//		if (temp == NULL) {
+//			printf("ERROR");
+//			return;
+//		}
+//		else {
+//			temp->data = number;
+//			P->next = temp;
+//			P = temp;
+//			number++;
+//		}
+//	}
+//	P->next = NULL;
+//}
+//void CoutLinkList(LinkList L) {
+//	PNode temp = L.head->next;
+//	for (;temp->next != NULL;temp=temp->next)
+//	{
+//		std::cout << temp->data<<" ";
+//	}
+//}
+//void HeadInsertLinkList(PNode L, int n) {
+//	PNode temp= CreatLinkList();
+//	temp->data = n;
+//	L->next = temp;
+//
+//}
+//PNode MergeLinkList(LinkList A, LinkList B) {
+//	PNode a=A.head->next, b=B.head->next;
+//	PNode C=CreatLinkList();
+//	while (a->next != NULL&&b->next!=NULL) {
+//		if (a->data <= b->data) {
+//			HeadInsertLinkList(C, a->data);
+//			a = a->next;
+//		}
+//		else {
+//			HeadInsertLinkList(C, b->data);
+//			b = b->next;
+//		}
+//	}
+//
+//	return C;
+//}
+//int main() {
+//	LinkList A, B;
+//	A.head=CreatLinkList();
+//	B.head=CreatLinkList();
+//	InitLinkList(A,3,1);
+//	InitLinkList(B,5,9);
+//	CoutLinkList(A);
+//	std::cout << std::end
