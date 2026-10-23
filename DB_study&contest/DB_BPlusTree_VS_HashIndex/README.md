@@ -83,7 +83,7 @@ static BenchResult runPlan(PlanType& plan, ...) {
 
 底层有两个独立组件
 - `BPlusTree`（`bplus_tree.h`）
-- `HashIndex`（`hash_index.h`，就是你前面问的那个链式哈希表）
+- `HashIndex`（`hash_index.h`）
 
 模板语法`template<class PLANTYPE>`在[[DB_C++_语法]]
 
