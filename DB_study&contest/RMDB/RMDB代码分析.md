@@ -69,7 +69,7 @@ ColMeta（列）：最底层，描述"一个字段"
 
 ## rmdb.cpp
 
-![](RMDB.svg)
+![](./attachments/RMDB.svg)
 
 ### 数据库系统一般结构
 ```
